@@ -151,7 +151,7 @@ function getEmptySpaces(gameData) {
 }
 
 //алгоритм минимакса для "умных" ходов компьютера
-function minimax(gameData, PLAYER) {
+function minimax(gameData, player) {
     const EMPTY_SPACES = getEmptySpaces(gameData);
     if (isVictory(gameData, computer)) return { evaluation: +10 };
     if (isVictory(gameData, human)) return { evaluation: -10 };
@@ -165,12 +165,12 @@ function minimax(gameData, PLAYER) {
 
         let backup = gameData[id];
 
-        gameData[id] = PLAYER;
+        gameData[id] = player;
 
         let move = {};
         move.id = id;
 
-        if (PLAYER == computer) {
+        if (player === computer) {
             move.evaluation = minimax(gameData, human).evaluation;
         } else {
             move.evaluation = minimax(gameData, computer).evaluation;
@@ -180,7 +180,7 @@ function minimax(gameData, PLAYER) {
         moves.push(move);
     }
     let bestMove;
-    if (PLAYER == computer) {
+    if (player === computer) {
         // MAXIMIZER
         let bestEvaluation = -Infinity;
         for (let i = 0; i < moves.length; i++) {
