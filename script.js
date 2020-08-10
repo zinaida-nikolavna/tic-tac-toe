@@ -84,7 +84,6 @@ function computerMove() {
         GAME_OVER = true;
         setTimeout(showGameOver, 1000, 'ничья');
     }
-    setTimeout(function () { gameBoard.removeAttribute('disabled', true) }, 300);
     move++;
 }
 
@@ -111,7 +110,6 @@ function turn(event) {
         GAME_OVER = true;
         showGameOver('ничья');
     }
-    gameBoard.setAttribute('disabled', true);
     computerMove();
     move++;
 }
